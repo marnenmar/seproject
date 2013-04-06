@@ -8,20 +8,20 @@ if ( !defined("__EMPLEADO__") ){
 		private $nombre;
 		private $direccion;
 		private $tipo;
-		private $contraseña;
+		private $contrasena;
 		
-		public function __construct($curp,$nombre,$direccion,$tipo,$contraseña)
+		public function __construct($curp,$nombre,$direccion,$tipo,$contrasena)
 		{
 			$this->CURP = $curp;
 			$this->nombre = $nombre;
 			$this->direccion = $direccion;
 			$this->tipo = $tipo;
-			$this->contraseña = $contraseña;		
+			$this->contrasena = $contrasena;		
 		}
 		
-		public static function iniciarSesion($curp,$contraseña){
+		public static function iniciarSesion($curp,$contrasena){
 			$db = new DataConnection();
-			$result = $db->executeQuery("SELECT * FROM Empleado WHERE CURP='".$curp."' and Contrasena='".$contraseña."'");			
+			$result = $db->executeQuery("SELECT * FROM Empleado WHERE CURP='".$curp."' and Contrasena='".$contrasena."'");			
 			if ( $dato = mysql_fetch_assoc($result) ){
 				$empleado = new Empleado($dato["CURP"],$dato["Nombre"],$dato["Direccion"],$dato["Area"],$dato["Contrasena"]);
 				return $empleado;
